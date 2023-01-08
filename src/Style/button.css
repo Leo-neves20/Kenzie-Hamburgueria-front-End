@@ -1,0 +1,31 @@
+
+.btnPrimaryMedium{
+
+    background-color: var(--Color-primary);
+    color: #FFFFFF;
+    font-weight: 600;
+    border-radius: 8px; 
+   
+}
+
+.btnPrimaryMedium:hover{
+
+    background-color: var(--Color-primary-50);
+
+}
+
+.btnGrayMedium{
+
+    background-color: #E0E0E0;
+    color: var(--grey-300);
+    font-weight: 600;
+    
+
+}
+
+.btnGrayMedium:hover{
+
+    background-color: var(--grey-300);
+    color: #E0E0E0;
+
+}
