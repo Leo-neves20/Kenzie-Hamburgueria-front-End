@@ -1,8 +1,24 @@
+import { useContext } from "react"
+import { contextMainPageValues } from "../../context/main_page"
+import MensageSearch from "../Search/mensageSearch"
+import {Card, UlCards} from "./cardsStyle"
+import {ButtonPrimary} from "../buttons"
 
-const Cards = ({cards, setCart, cart, filtro,  purchaseAmount, setPurchaseAmount, valueSearch}) => {
+const Cards = () => {
+
+    const {
+        cards, 
+        setCart, 
+        cart, 
+        filtro,  
+        purchaseAmount, 
+        setPurchaseAmount, 
+        valueSearch
+    } = useContext(contextMainPageValues)
 
     const addCart = (id) => {
         
+        // eslint-disable-next-line array-callback-return
         cards.map(element => {
 
             const newArray = cart.filter(element => element.id !== id)
@@ -44,49 +60,54 @@ const Cards = ({cards, setCart, cart, filtro,  purchaseAmount, setPurchaseAmount
                 filtro.length !== 0 ? (
 
                     <>
+                        <div className="containerProdutctsAndMessageSeach">
+                            <MensageSearch>
+                                <h2>Resultado para:</h2>
+                                <span>{valueSearch}</span> 
+                            </MensageSearch>
+                        
+                            <UlCards>
+                            {
 
-                        <div className="mensagemResultadoPesquisa">
-                            <h2>Resultado para:</h2>
-                            <span>{valueSearch}</span> 
+                                filtro.map(element => {
+
+                                    const {id, name, category, img, price} = element
+
+                                    return(
+
+                                        <Card key={id}>
+
+                                            <img src={img} alt={name} />
+
+                                            <div>
+                                                <h3>{name}</h3>
+                                                <span>{category}</span>
+                                                <span>R$ {price}</span>
+                                                <ButtonPrimary 
+                                                    id={id} 
+                                                    onClick={() => addCart(id)}
+                                                >
+                                                    Adicionar
+                                                </ButtonPrimary>
+                                            </div>
+
+                                        </Card>
+
+                                    )
+
+                                })
+
+                            }
+                            </UlCards>
                         </div>
-                    
-                        <ul className="ulCards">
-                        {
-
-                            filtro.map(element => {
-
-                                const {id, name, category, img, price} = element
-
-                                return(
-
-                                    <li key={id}>
-
-                                        <img src={img} alt={name} />
-
-                                        <div>
-                                            <h3>{name}</h3>
-                                            <span>{category}</span>
-                                            <span>R$ {price}</span>
-                                            <button className="btnPrimaryMedium" id={id} onClick={() => addCart(id)}>Adicionar</button>
-                                        </div>
-
-                                    </li>
-
-                                )
-
-                            })
-
-                        }
-                        </ul>
 
                     </>
-                
-                            
+                         
                 )
                 :
                 (
 
-                    <ul className="ulCards">
+                    <UlCards>
                     {
 
                         cards.map(element => {
@@ -95,7 +116,7 @@ const Cards = ({cards, setCart, cart, filtro,  purchaseAmount, setPurchaseAmount
 
                             return(
 
-                                <li key={id}>
+                                <Card key={id}>
 
                                     <img src={img} alt={name} />
 
@@ -103,24 +124,26 @@ const Cards = ({cards, setCart, cart, filtro,  purchaseAmount, setPurchaseAmount
                                         <h3>{name}</h3>
                                         <span>{category}</span>
                                         <span>R$ {price}</span>
-                                        <button className="btnPrimaryMedium" id={id} onClick={() => addCart(id)}>Adicionar</button>
+                                        <ButtonPrimary 
+                                            id={id} 
+                                            onClick={() => addCart(id)}
+                                        >
+                                            Adicionar
+                                        </ButtonPrimary>
                                     </div>
 
-                                </li>
+                                </Card>
 
                             )
 
                         })
 
                     }
-                    </ul>
-
+                    </UlCards>
                 )
-
             }
-
         </>
-        
+ 
     )
 
 }

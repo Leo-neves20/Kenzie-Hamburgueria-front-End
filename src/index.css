@@ -1,9 +1,0 @@
-@import "Style/reset.css";
-@import "Style/global.css";
-@import "Style/button.css";
-@import "Style/input.css";
-@import "./Components/Cards/cards.css";
-@import "./Components/Cart/cart.css";
-@import "./Components/Cart/cardCart.css";
-@import "./Components/Search/search.module.css"
-

@@ -1,5 +1,15 @@
+import { useContext } from "react"
+import { contextMainPageValues } from "../../context/main_page"
+import { CardCart, CartSection } from "./cartStyled"
 
-const Cart = ({cart, setCart, purchaseAmount, setPurchaseAmount}) => {
+const Cart = () => {
+
+    const {
+        cart, 
+        setCart, 
+        purchaseAmount, 
+        setPurchaseAmount
+    } = useContext(contextMainPageValues)
 
     const deleteAllProdcts = () => {
 
@@ -53,7 +63,7 @@ const Cart = ({cart, setCart, purchaseAmount, setPurchaseAmount}) => {
 
     return(
 
-        <section className="conatinerCart">  
+        <CartSection>  
             <header className="headerCart">
                 <h1>Carrinho de compras</h1>
             </header>
@@ -77,7 +87,7 @@ const Cart = ({cart, setCart, purchaseAmount, setPurchaseAmount}) => {
 
                         return(
 
-                            <li key={element.name} className="cardCart">
+                            <CardCart key={element.name}>
 
                                 <img src={element.img} alt={element.name} />
                                 <div className="containerConteudos">
@@ -104,7 +114,7 @@ const Cart = ({cart, setCart, purchaseAmount, setPurchaseAmount}) => {
                                     </div>
                                     
                                 </div>
-                            </li>
+                            </CardCart>
 
                         )
 
@@ -123,7 +133,7 @@ const Cart = ({cart, setCart, purchaseAmount, setPurchaseAmount}) => {
                 <button className="btnGrayMedium" onClick={() => deleteAllProdcts()}>Remover Todos</button>
             </div>
 
-        </section>
+        </CartSection>
 
         
     )
