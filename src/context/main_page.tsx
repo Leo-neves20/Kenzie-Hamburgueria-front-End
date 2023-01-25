@@ -25,8 +25,6 @@ const MainPageContext = ({children}: iChildren) => {
     const [valueSearch, setValueSearch]        = useState<string>("")
     const [purchaseAmount, setPurchaseAmount]  = useState<number>(0)
 
-    console.log(valueSearch)
-
     useEffect(() => {
 
     instance.get("products")
